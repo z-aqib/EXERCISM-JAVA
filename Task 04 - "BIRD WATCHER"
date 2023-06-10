@@ -1,0 +1,61 @@
+/*
+  Instructions
+  You're an avid bird watcher that keeps track of how many birds have visited your garden in the last seven days.
+*/
+
+public class BirdWatcher {
+    private final int[] birdsPerDay;
+
+    public BirdWatcher(int[] birdsPerDay) {
+        this.birdsPerDay = birdsPerDay.clone();
+    }
+
+    public int[] getLastWeek() {
+        int[] lastWeekBirds = {0, 2, 5, 3, 7, 8, 4};
+        return lastWeekBirds;
+    }
+
+    public int getToday() {
+        int length = this.birdsPerDay.length;
+        int today = this.birdsPerDay[length-1];
+        return today;
+    }
+
+    public void incrementTodaysCount() {
+        int length = this.birdsPerDay.length;
+        int today = this.birdsPerDay[length-1] + 1;
+        this.birdsPerDay[length-1] = today;
+    }
+
+    public boolean hasDayWithoutBirds() {
+        boolean noBirds = false;
+        for (int i = 0; i < this.birdsPerDay.length; i++) {
+            if (this.birdsPerDay[i] == 0) {
+                noBirds = true;
+            }
+        }
+        return noBirds;
+    }
+
+    public int getCountForFirstDays(int numberOfDays) {
+        int sum = 0;
+        int endingPoint = this.birdsPerDay.length;
+        if (numberOfDays <= this.birdsPerDay.length) {
+            endingPoint = numberOfDays;
+        }
+        for (int i = 0; i < endingPoint; i++) {
+            sum = sum + this.birdsPerDay[i];
+        }
+        return sum;
+    }
+
+    public int getBusyDays() {
+        int busyDays = 0;
+        for (int i = 0; i < this.birdsPerDay.length; i++) {
+            if (this.birdsPerDay[i] >= 5) {
+                busyDays++;
+            }
+        }
+        return busyDays;
+    }
+}
