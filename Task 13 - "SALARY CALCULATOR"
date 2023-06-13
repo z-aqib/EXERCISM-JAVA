@@ -1,0 +1,56 @@
+/*
+  Instructions
+  In this exercise, you'll be implementing rules for calculating the total salary of a employee in a month. The International 
+  Siderurgy Company (ISC) needs help to calculate the salary for the employees, given that different factors can alter the final 
+  wage value for each employee.
+*/
+
+public class SalaryCalculator {
+    
+    public double multiplierPerDaysSkipped(int daysSkipped) {
+        
+        double multiplier;
+        if (daysSkipped > 5) {
+            multiplier = 0.85;
+        }
+        else {
+            multiplier = 1;
+        }
+        return multiplier;
+        
+    }
+
+    public int multiplierPerProductsSold(int productsSold) {
+
+        int multiplier;
+        if (productsSold > 20) {
+            multiplier = 13;
+        }
+        else {
+            multiplier = 10;
+        }
+        return multiplier;
+        
+    }
+
+    public double bonusForProductSold(int productsSold) {
+
+        int multiplier = multiplierPerProductsSold(productsSold);
+        double bonus = multiplier * productsSold;
+        return bonus;
+        
+    }
+
+    public double finalSalary(int daysSkipped, int productsSold) {
+
+        double salaryMultiplier = multiplierPerDaysSkipped(daysSkipped);
+        double baseSalary = salaryMultiplier * 1000;
+        double bonus = bonusForProductSold(productsSold);
+        double totalSalary = bonus + baseSalary;
+        if (totalSalary > 2000) {
+            totalSalary = 2000;
+        }
+        return totalSalary;
+        
+    } 
+}
